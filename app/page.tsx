@@ -72,7 +72,7 @@ export default function Home() {
   const [numPoints, setNumPoints] = useState(5);
   const [numSkip, setNumSkip] = useState(1);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const maxSkips = Math.floor((numPoints - 1) / 2) - 1;
+  const maxSkips = Math.max(Math.floor((numPoints - 1) / 2) - 1, 1);
   const points = useMemo(() => CalculatePoints(numPoints), [numPoints]);
 
   if (numSkip > maxSkips) setNumSkip(maxSkips);
