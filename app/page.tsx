@@ -86,7 +86,7 @@ export default function Home() {
   }, [canvasRef.current, numPoints, numSkip]);
 
   return (
-    <main className="flex h-svh w-svw flex-col items-center justify-center gap-4">
+    <>
       <div className="flex flex-col items-end gap-2">
         <IntField
           label="Number of Points"
@@ -102,7 +102,12 @@ export default function Home() {
           max={maxSkips}
         />
       </div>
-      <canvas width="500" height="500" ref={canvasRef}></canvas>
-    </main>
+      <canvas
+        width="500"
+        height="500"
+        ref={canvasRef}
+        className="max-w-full"
+      ></canvas>
+    </>
   );
 }
