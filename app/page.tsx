@@ -47,18 +47,22 @@ function IntField(props: {
   min?: number;
   max?: number;
 }) {
+  const [text, setText] = useState(props.value.toString());
+
+  useEffect(() => {
+    const newValue = parseInt(text);
+    if (isNaN(newValue)) return;
+    if (props.min !== undefined && newValue < props.min) return;
+    if (props.max !== undefined && newValue > props.max) return;
+    props.onChange(newValue);
+  }, [text]);
+
   return (
     <label className="flex items-center gap-2">
       <span>{props.label}</span>
       <input
-        value={props.value}
-        onChange={(e) =>
-          props.onChange(
-            parseInt(e.target.value) === undefined
-              ? props.value
-              : parseInt(e.target.value),
-          )
-        }
+        value={text}
+        onChange={(e) => setText(e.target.value)}
         type="number"
         min={props.min}
         max={props.max}
